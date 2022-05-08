@@ -86,7 +86,7 @@ error: `{}`
 Dev&eng: @ta_ja199 👨‍💻"""
 
 
-feedbackMsg = "[🌟Rate:تقييم🌟](https://t.me/tlgrmcbot?start=i2pdfbot)"
+feedbackMsg = "[🌟Rate:تقييم🌟](https://telegramic.org/bot/i2pdfbot/)"
 
 
 forceSubMsg = """انتظر(Wait) [{}](tg://user?id={}) 🤚🏻..!!
@@ -137,7 +137,7 @@ pdfReply=InlineKeyboardMarkup(
                 InlineKeyboardButton("✏️ إعادة تسمية |RENAME ✏️", callback_data="rename")
             ],[
                 InlineKeyboardButton("📝 مسح ضوئي | OCR 📝", callback_data="ocr"),
-                InlineKeyboardButton("🥷A4 FORMAT | تنسيق 🥷", callback_data="format")
+                InlineKeyboardButton("🥷A4 FORMAT|تنسيق🥷", callback_data="format")
             ],[
                 InlineKeyboardButton("🤐 ZIP 🤐", callback_data="zip"),
                 InlineKeyboardButton("🎯 TAR 🎯", callback_data="tar")
@@ -251,7 +251,7 @@ async def documents(bot, message):
         elif fileExt.lower() == ".pdf":
             try:
                 pdfMsgId = await message.reply_text(
-                    "المعالجة (Processing)..🚶 (Processing)..🚶", quote=True
+                    "المعالجة (Processing)..⏳", quote=True
                 )
                 await asyncio.sleep(0.5)
                 await pdfMsgId.edit(
@@ -272,7 +272,7 @@ async def documents(bot, message):
                 await message.download(
                     f"{message.message_id}/{isPdfOrImg}"
                 )
-                await pdfMsgId.edit("`جاري العمل .. قد يستغرق بعض الوقت .. 💛\n Work in Progress.. It might take some time.. `")
+                await pdfMsgId.edit("`جاري العمل .. قد يستغرق بعض الوقت .. 💛\nWork in Progress.. It might take some time.. `")
                 Document=fitz.open(
                     f"{message.message_id}/{isPdfOrImg}"
                 )
@@ -294,7 +294,7 @@ async def documents(bot, message):
                     file_name=f"{fileNm}.pdf",
                     document=open(f"{message.message_id}/{fileNm}.pdf", "rb"),
                     thumb=PDF_THUMBNAIL,
-                    caption=f"` تم تحويل ملفك 📗: {fileExt} إالى pdf`",
+                    caption=f"` تم تحويل ملفك: {fileExt} إالى pdf` \n`Converted: {fileExt} to pdf`",
                     quote=True
                 )
                 await pdfMsgId.delete()
@@ -332,7 +332,7 @@ async def documents(bot, message):
                     await message.download(
                         f"{message.message_id}/{isPdfOrImg}"
                     )
-                    await pdfMsgId.edit("`جاري العمل .. قد يستغرق بعض الوقت ..\n Work in Progress.. It might take some time.. `💛")
+                    await pdfMsgId.edit("`جاري العمل .. قد يستغرق بعض الوقت ..\nWork in Progress.. It might take some time.. `💛")
                     try:
                         convertapi.convert(
                             "pdf",
@@ -359,7 +359,7 @@ async def documents(bot, message):
                         file_name=f"{fileNm}.pdf",
                         document=open(f"{message.message_id}/{fileNm}.pdf", "rb"),
                         thumb=PDF_THUMBNAIL,
-                        caption=f"` تم تحويل ملفك 📗: {fileExt} إلى pdf`",
+                        caption=f"` تم تحويل ملفك: {fileExt} إلى pdf` \n`Converted: {fileExt} to pdf`",
                         quote=True
                     )
                     await pdfMsgId.delete()
